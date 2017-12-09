@@ -1,32 +1,76 @@
-import React, { Component } from 'react'
-import { ScrollView, Text, Image, View } from 'react-native'
-import DevscreensButton from '../../ignite/DevScreens/DevscreensButton.js'
+import React, { Component } from 'react';
+import { ScrollView, Text, Image, View, StyleSheet } from 'react-native';
+import RoundedButton from '../Components/RoundedButton';
 
 import { Images } from '../Themes'
+import CircleWithPoints from '../Components/CircleWithPoints';
+import {
+  DIATONIC_CHORDS,
+  NUM_CHORDS,
+} from '../Constants/notesAndChords';
 
 // Styles
 import styles from './Styles/LaunchScreenStyles'
 
 export default class LaunchScreen extends Component {
-  render () {
+  state = {
+    activeChordIndex: 0,
+  }
+
+  rotateRight = () => {
+    const { activeChordIndex } = this.state;
+    console.tron.log("Setting to " + (activeChordIndex + 1) % NUM_CHORDS);
+    this.setState({
+      activeChordIndex: (activeChordIndex + 1) % NUM_CHORDS,
+    });
+  }
+
+  rotateLeft = () => {
+    const { activeChordIndex } = this.state;
+    this.setState({
+      activeChordIndex: activeChordIndex === 0 ?
+        NUM_CHORDS - 1 :
+        activeChordIndex - 1,
+    });
+  }
+
+  render() {
+    const { activeChordIndex } = this.state;
     return (
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
         <ScrollView style={styles.container}>
           <View style={styles.centered}>
-            <Image source={Images.launch} style={styles.logo} />
+            <CircleWithPoints
+              activeChordIndex={activeChordIndex}
+            />
           </View>
 
           <View style={styles.section} >
-            <Image source={Images.ready} />
             <Text style={styles.sectionText}>
-              This probably isn't what your app is going to look like. Unless your designer handed you this screen and, in that case, congrats! You're ready to ship. For everyone else, this is where you'll see a live preview of your fully functioning app using Ignite.
+              {DIATONIC_CHORDS[activeChordIndex].label}
             </Text>
           </View>
 
-          <DevscreensButton />
+          <View style={myStyles.rotateButtonsContainer}>
+            <RoundedButton onPress={this.rotateLeft}>
+              Left
+            </RoundedButton>
+            <RoundedButton onPress={this.rotateRight}>
+              Right
+            </RoundedButton>
+          </View>
         </ScrollView>
       </View>
     )
   }
 }
+
+const myStyles = StyleSheet.create({
+  rotateButtonsContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginRight: 25,
+  },
+});
