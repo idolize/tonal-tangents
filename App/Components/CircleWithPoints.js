@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
+import { View, Text } from 'react-native';
 import Svg, { Circle, Line } from 'react-native-svg';
+import { capitalize } from 'lodash';
 import {
     NOTES,
     NOTES_TO_INDEX,
@@ -30,7 +32,7 @@ export default class CircleWithPoints extends PureComponent {
     }
 
     computePointsOnCircle(props) {
-        const { size, pointsColor, strokeWidth } = props;
+        const { size, strokeWidth } = props;
         this.points = [];
         const topLeft = size / 2;
         const r = (size / 2) - strokeWidth;
@@ -43,6 +45,41 @@ export default class CircleWithPoints extends PureComponent {
                 y: topLeft - (r * Math.cos(angle)),
             };
         }
+    }
+
+    renderLabelsAtEachPoint() {
+        const { size } = this.props;
+        const mid = size / 2;
+        return this.points.map((point) => {
+            const { x, y, note } = point;
+            const yPosKey = y > mid ? 'top' : 'bottom';
+            const xPosKey = x > mid ? 'left' : 'right';
+            return (
+                <View
+                    key={note}
+                    style={{
+                        position: 'absolute',
+                        top: y,
+                        left: x,
+                    }}
+                >
+                    <Text
+                        style={{
+                            color: 'white',
+                            position: 'absolute',
+                            width: 25,
+                            [xPosKey]: '100%',
+                            [yPosKey]: '100%',
+                            [`margin${capitalize(xPosKey)}`]: 5,
+                            [`margin${capitalize(yPosKey)}`]: 5,
+                            textAlign: x > mid ? 'left' : 'right',
+                        }}
+                    >
+                        {note.replace('/', '\n')}
+                    </Text>
+                </View>
+            );
+        });
     }
 
     renderLinesBetweenPoints() {
@@ -67,7 +104,7 @@ export default class CircleWithPoints extends PureComponent {
             const pt2 = this.points[pointIndex2];
             return (
                 <Line
-                    key={i}
+                    key={`${note}-${nextNote}`}
                     x1={pt1.x}
                     y1={pt1.y}
                     x2={pt2.x}
@@ -90,30 +127,33 @@ export default class CircleWithPoints extends PureComponent {
         } = this.props;
         const halfSize = (size / 2);
         return (
-            <Svg
-                height={size}
-                width={size}
-            >
-                <Circle
-                    cx={halfSize}
-                    cy={halfSize}
-                    r={(halfSize - strokeWidth)}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    fill={fillColor}
-                    fillOpacity={fillOpacity}
-                />
-                {this.points.map((point, i) => (
+            <View>
+                <Svg
+                    height={size}
+                    width={size}
+                >
                     <Circle
-                        key={i}
-                        cx={point.x}
-                        cy={point.y}
-                        r={(strokeWidth / 2) - 1} /* -1 is just to add a little padding */
-                        fill={pointsColor}
+                        cx={halfSize}
+                        cy={halfSize}
+                        r={(halfSize - strokeWidth)}
+                        stroke={strokeColor}
+                        strokeWidth={strokeWidth}
+                        fill={fillColor}
+                        fillOpacity={fillOpacity}
                     />
-                ))}
-                {this.renderLinesBetweenPoints()}
-            </Svg>
+                    {this.points.map((point, i) => (
+                        <Circle
+                            key={point.note}
+                            cx={point.x}
+                            cy={point.y}
+                            r={(strokeWidth / 2) - 1} /* -1 is just to add a little padding */
+                            fill={pointsColor}
+                        />
+                    ))}
+                    {this.renderLinesBetweenPoints()}
+                </Svg>
+                {this.renderLabelsAtEachPoint()}
+            </View>
         );
     }
 }
