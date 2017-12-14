@@ -35,14 +35,22 @@ export default class CircleWithPoints extends PureComponent {
         const { size, strokeWidth } = props;
         this.points = [];
         const topLeft = size / 2;
-        const r = (size / 2) - strokeWidth;
+        const radius = (size / 2) - strokeWidth;
+        const radiusForLabels = (size + 20) / 2;
+        const radiusForBigLabels = (size + 30) / 2;
         const theta = (Math.PI * 2) / NUM_POINTS;
         for (let i = 0; i < NUM_POINTS; i++) {
             const angle = theta * i;
+            const sin = Math.sin(angle);
+            const cos = Math.cos(angle);
             this.points[i] = {
                 note: NOTES[i],
-                x: topLeft + (r * Math.sin(angle)),
-                y: topLeft - (r * Math.cos(angle)),
+                x: topLeft + (radius * sin),
+                y: topLeft - (radius * cos),
+                labelX: topLeft + (radiusForLabels * sin),
+                labelY: topLeft - (radiusForLabels * cos),
+                bigLabelX: topLeft + (radiusForBigLabels * sin),
+                bigLabelY: topLeft - (radiusForBigLabels * cos),
             };
         }
     }
@@ -51,28 +59,27 @@ export default class CircleWithPoints extends PureComponent {
         const { size } = this.props;
         const mid = size / 2;
         return this.points.map((point) => {
-            const { x, y, note } = point;
-            const yPosKey = y > mid ? 'top' : 'bottom';
-            const xPosKey = x > mid ? 'left' : 'right';
+            const { labelX, labelY, bigLabelX, bigLabelY, note } = point;
+            const isBigLabel = note.indexOf('/') !== -1;
+            const containerSize = 0;
             return (
                 <View
                     key={note}
                     style={{
                         position: 'absolute',
-                        top: y,
-                        left: x,
+                        top: isBigLabel ? bigLabelY : labelY,
+                        left: isBigLabel ? bigLabelX : labelX,
+                        width: 0,
+                        height: 0,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        display: 'flex',
                     }}
                 >
                     <Text
                         style={{
                             color: 'white',
-                            position: 'absolute',
-                            width: 25,
-                            [xPosKey]: '100%',
-                            [yPosKey]: '100%',
-                            [`margin${capitalize(xPosKey)}`]: 5,
-                            [`margin${capitalize(yPosKey)}`]: 5,
-                            textAlign: x > mid ? 'left' : 'right',
+                            textAlign: 'center',
                         }}
                     >
                         {note.replace('/', '\n')}
