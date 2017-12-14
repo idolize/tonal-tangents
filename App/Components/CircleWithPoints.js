@@ -82,7 +82,6 @@ export default class CircleWithPoints extends PureComponent {
         if (lastDragPos) {
             const deltaX = lastDragPos.locationX - locationX;
             const deltaY = lastDragPos.locationY - locationY;
-            console.tron.log('locationX: ' + locationX + ', locationY: ' + locationY);
             if (Math.abs(deltaX) > Math.abs(deltaY)) {
                 // The swipe is more of a "sideways" swipe than a "lengthwise" one
                 this.throttledOnDrag(deltaX);
@@ -98,8 +97,7 @@ export default class CircleWithPoints extends PureComponent {
         const mid = size / 2;
         return this.points.map((point) => {
             const { labelX, labelY, bigLabelX, bigLabelY, note } = point;
-            const isBigLabel = note.indexOf('/') !== -1;
-            const containerSize = 0;
+            const isBigLabel = note.length > 2;
             return (
                 <View
                     key={note}
@@ -146,7 +144,7 @@ export default class CircleWithPoints extends PureComponent {
             <Polygon
                 points={polygonPoints.join(' ')}
                 fill="lime"
-                fillOpacity={0.5}
+                fillOpacity={0.2}
                 stroke={pointsColor}
                 strokeWidth={strokeWidth / 2}
             />
