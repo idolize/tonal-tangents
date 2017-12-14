@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { View, Text } from 'react-native';
 import Svg, { Circle, Line } from 'react-native-svg';
-import { capitalize, noop } from 'lodash';
+import { capitalize, noop, throttle } from 'lodash';
 import {
     NOTES,
     NOTES_TO_INDEX,
@@ -22,6 +22,7 @@ export default class CircleWithPoints extends PureComponent {
         fillOpacity: 0.2,
         pointsColor: 'white',
         onDrag: noop,
+        onDragStartAndEnd: noop,
     }
 
     constructor(props) {
@@ -66,14 +67,17 @@ export default class CircleWithPoints extends PureComponent {
     handleRespondingToTouch = ({ nativeEvent: { locationX, locationY } }) => {
         this.setState({ isDragging: true });
         this.lastDragPos = { locationX, locationY };
+        this.props.onDragStartAndEnd(true);
     }
 
     handleNotRespondingToTouch = () => {
         this.setState({ isDragging: false });
+        this.props.onDragStartAndEnd(false);
     }
 
+    throttledOnDrag = throttle((delta) => this.props.onDrag(delta), 100)
+
     handleDrag = ({ nativeEvent: { locationX, locationY } }) => {
-        const { onDrag } = this.props;
         const { lastDragPos } = this;
         if (lastDragPos) {
             const deltaX = lastDragPos.locationX - locationX;
@@ -81,9 +85,9 @@ export default class CircleWithPoints extends PureComponent {
             console.tron.log('locationX: ' + locationX + ', locationY: ' + locationY);
             if (Math.abs(deltaX) > Math.abs(deltaY)) {
                 // The swipe is more of a "sideways" swipe than a "lengthwise" one
-                onDrag(deltaX);
+                this.throttledOnDrag(deltaX);
             } else {
-                onDrag(deltaY);
+                this.throttledOnDrag(deltaY);
             }
         }
         this.lastDragPos = { locationX, locationY };
@@ -171,6 +175,7 @@ export default class CircleWithPoints extends PureComponent {
         return (
             <View
                 onStartShouldSetResponder={alwaysReturnTrue}
+                onStartShouldSetResponderCapture={alwaysReturnTrue}
                 onMoveShouldSetResponder={alwaysReturnTrue}
                 onResponderTerminationRequest={alwaysReturnFalse}
                 onResponderGrant={this.handleRespondingToTouch}

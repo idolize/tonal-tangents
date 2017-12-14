@@ -36,24 +36,29 @@ export default class LaunchScreen extends Component {
 
   handleCircleDrag = delta => {
     console.tron.log('delta: ' + delta);
-    const threshold = 3;
+    const threshold = 2;
     if (delta > threshold) {
-      this.rotateRight();
-    } else if (delta < -threshold) {
       this.rotateLeft();
+    } else if (delta < -threshold) {
+      this.rotateRight();
     }
   }
 
+  handleIsCircleDragging = isDragging => {
+    this.setState({ scrollEnabled: !isDragging });
+  }
+
   render() {
-    const { activeChordIndex } = this.state;
+    const { activeChordIndex, scrollEnabled } = this.state;
     return (
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
-        <ScrollView style={styles.container}>
+        <ScrollView style={styles.container} scrollEnabled={scrollEnabled}>
           <View style={styles.centered}>
             <CircleWithPoints
               activeChordIndex={activeChordIndex}
               onDrag={this.handleCircleDrag}
+              onDragStartAndEnd={this.handleIsCircleDragging}
             />
           </View>
 
