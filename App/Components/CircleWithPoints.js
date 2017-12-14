@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { View, Text } from 'react-native';
-import Svg, { Circle, Line } from 'react-native-svg';
-import { capitalize, noop, throttle } from 'lodash';
+import Svg, { Circle, Polygon } from 'react-native-svg';
+import { noop, throttle } from 'lodash';
 import {
     NOTES,
     NOTES_TO_INDEX,
@@ -129,35 +129,28 @@ export default class CircleWithPoints extends PureComponent {
 
     renderLinesBetweenPoints() {
         const { activeChordIndex, pointsColor, strokeWidth } = this.props;
-        const lineStroke = {
-            stroke: pointsColor,
-            strokeWidth: strokeWidth / 2,
-        };
         // There are 4 lines to visualize this chord
         const chord = DIATONIC_CHORDS[activeChordIndex];
         const { label, notes } = chord;
         // example notes: ['B', 'C', 'E', 'G'],
         console.tron.log('Rendering ' + label);
-        return notes.map((note, i) => {
+        const polygonPoints = notes.map((note) => {
             // We are making a line from this note to the next note,
             // but we need to figure out which actual indexes on the circle correspond to these
             // notes before we can draw the line
-            const pointIndex1 = NOTES_TO_INDEX[note];
-            const nextNote = notes[(i + 1) % notes.length];
-            const pointIndex2 = NOTES_TO_INDEX[nextNote];
-            const pt1 = this.points[pointIndex1];
-            const pt2 = this.points[pointIndex2];
-            return (
-                <Line
-                    key={`${note}-${nextNote}`}
-                    x1={pt1.x}
-                    y1={pt1.y}
-                    x2={pt2.x}
-                    y2={pt2.y}
-                    {...lineStroke}
-                />
-            );
+            const pointIndex = NOTES_TO_INDEX[note];
+            const pt = this.points[pointIndex];
+            return `${Math.round(pt.x)},${Math.round(pt.y)}`;
         });
+        return (
+            <Polygon
+                points={polygonPoints.join(' ')}
+                fill="lime"
+                fillOpacity={0.5}
+                stroke={pointsColor}
+                strokeWidth={strokeWidth / 2}
+            />
+        );
     }
 
     render() {
