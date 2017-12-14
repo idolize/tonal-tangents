@@ -1,13 +1,16 @@
 import React, { PureComponent } from 'react';
 import { View, Text } from 'react-native';
 import Svg, { Circle, Line } from 'react-native-svg';
-import { capitalize } from 'lodash';
+import { capitalize, noop } from 'lodash';
 import {
     NOTES,
     NOTES_TO_INDEX,
     NUM_POINTS,
     DIATONIC_CHORDS,
 } from '../Constants/notesAndChords';
+
+const alwaysReturnTrue = () => true;
+const alwaysReturnFalse = () => false;
 
 export default class CircleWithPoints extends PureComponent {
     static defaultProps = {
@@ -18,10 +21,15 @@ export default class CircleWithPoints extends PureComponent {
         fillColor: 'black',
         fillOpacity: 0.2,
         pointsColor: 'white',
+        onDrag: noop,
     }
 
     constructor(props) {
         super(props);
+        this.state = {
+            isDragging: false,
+            lastDragPos: null,
+        };
         this.computePointsOnCircle(props);
     }
 
@@ -53,6 +61,32 @@ export default class CircleWithPoints extends PureComponent {
                 bigLabelY: topLeft - (radiusForBigLabels * cos),
             };
         }
+    }
+
+    handleRespondingToTouch = ({ nativeEvent: { locationX, locationY } }) => {
+        this.setState({ isDragging: true });
+        this.lastDragPos = { locationX, locationY };
+    }
+
+    handleNotRespondingToTouch = () => {
+        this.setState({ isDragging: false });
+    }
+
+    handleDrag = ({ nativeEvent: { locationX, locationY } }) => {
+        const { onDrag } = this.props;
+        const { lastDragPos } = this;
+        if (lastDragPos) {
+            const deltaX = lastDragPos.locationX - locationX;
+            const deltaY = lastDragPos.locationY - locationY;
+            console.tron.log('locationX: ' + locationX + ', locationY: ' + locationY);
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                // The swipe is more of a "sideways" swipe than a "lengthwise" one
+                onDrag(deltaX);
+            } else {
+                onDrag(deltaY);
+            }
+        }
+        this.lastDragPos = { locationX, locationY };
     }
 
     renderLabelsAtEachPoint() {
@@ -133,8 +167,17 @@ export default class CircleWithPoints extends PureComponent {
             pointsColor,
         } = this.props;
         const halfSize = (size / 2);
+        const { isDragging } = this.state;
         return (
-            <View>
+            <View
+                onStartShouldSetResponder={alwaysReturnTrue}
+                onMoveShouldSetResponder={alwaysReturnTrue}
+                onResponderTerminationRequest={alwaysReturnFalse}
+                onResponderGrant={this.handleRespondingToTouch}
+                onResponderMove={this.handleDrag}
+                onResponderRelease={this.handleNotRespondingToTouch}
+                onResponderTerminate={this.handleNotRespondingToTouch}
+            >
                 <Svg
                     height={size}
                     width={size}
@@ -145,7 +188,7 @@ export default class CircleWithPoints extends PureComponent {
                         r={(halfSize - strokeWidth)}
                         stroke={strokeColor}
                         strokeWidth={strokeWidth}
-                        fill={fillColor}
+                        fill={isDragging ? 'red' : fillColor}
                         fillOpacity={fillOpacity}
                     />
                     {this.points.map((point, i) => (

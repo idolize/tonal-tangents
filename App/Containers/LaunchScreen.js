@@ -34,6 +34,16 @@ export default class LaunchScreen extends Component {
     });
   }
 
+  handleCircleDrag = delta => {
+    console.tron.log('delta: ' + delta);
+    const threshold = 3;
+    if (delta > threshold) {
+      this.rotateRight();
+    } else if (delta < -threshold) {
+      this.rotateLeft();
+    }
+  }
+
   render() {
     const { activeChordIndex } = this.state;
     return (
@@ -43,6 +53,7 @@ export default class LaunchScreen extends Component {
           <View style={styles.centered}>
             <CircleWithPoints
               activeChordIndex={activeChordIndex}
+              onDrag={this.handleCircleDrag}
             />
           </View>
 
