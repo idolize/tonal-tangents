@@ -35,7 +35,6 @@ export default class LaunchScreen extends Component {
   }
 
   handleCircleDrag = delta => {
-    console.tron.log('delta: ' + delta);
     const threshold = 2;
     if (delta > threshold) {
       this.rotateLeft();

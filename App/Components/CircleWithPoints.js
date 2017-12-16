@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import { View, Text } from 'react-native';
-import Svg, { Circle, Polygon } from 'react-native-svg';
+import Svg, { Circle } from 'react-native-svg';
 import { noop, throttle } from 'lodash';
+import AnimatedPolygon from './AnimatedPolygon';
 import {
     NOTES,
     NOTES_TO_INDEX,
@@ -11,6 +12,11 @@ import {
 
 const alwaysReturnTrue = () => true;
 const alwaysReturnFalse = () => false;
+const shapeToColor = [
+    'green',
+    'yellow',
+    'purple',
+];
 
 export default class CircleWithPoints extends PureComponent {
     static defaultProps = {
@@ -138,12 +144,12 @@ export default class CircleWithPoints extends PureComponent {
             // notes before we can draw the line
             const pointIndex = NOTES_TO_INDEX[note];
             const pt = this.points[pointIndex];
-            return `${Math.round(pt.x)},${Math.round(pt.y)}`;
+            return [pt.x, pt.y];
         });
         return (
-            <Polygon
-                points={polygonPoints.join(' ')}
-                fill="lime"
+            <AnimatedPolygon
+                points={polygonPoints}
+                fill={shapeToColor[chord.shapeType]}
                 fillOpacity={0.2}
                 stroke={pointsColor}
                 strokeWidth={strokeWidth / 2}
@@ -184,7 +190,7 @@ export default class CircleWithPoints extends PureComponent {
                         r={(halfSize - strokeWidth)}
                         stroke={strokeColor}
                         strokeWidth={strokeWidth}
-                        fill={isDragging ? 'red' : fillColor}
+                        fill={isDragging ? 'darkred' : fillColor}
                         fillOpacity={fillOpacity}
                     />
                     {this.points.map((point, i) => (
