@@ -46,11 +46,19 @@
 		7C7352E9F16441E48804A6AD /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7CB5F34CF034C46A2224CE4 /* libReactNativeConfig.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		86D8011C7CF047EE9C69DA86 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECE1ACA05891452A9A0E9DE3 /* SimpleLineIcons.ttf */; };
+		8EDC0238133E4682B7F5D1B6 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6709E8CBCF4B5CB0D6FDA5 /* libRNSound.a */; };
 		9A23C9B34A78444BAC5F26ED /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F74B1F198E742108D1394D8 /* libRNDeviceInfo.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		BED173543CF44F5DA631387D /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4F66D28196CA4974AB0FD9FC /* Octicons.ttf */; };
 		CC840E21B4F047FABA188584 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D15C80D8C5544FEA1FA55A2 /* MaterialCommunityIcons.ttf */; };
 		D3EA774C623C44C99FFCBACD /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0BDE9A57B40547D98FEC6598 /* Foundation.ttf */; };
+		D5A6FA661FF4B7C700448BE6 /* piano-b.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5A6FA5F1FF4B7C500448BE6 /* piano-b.wav */; };
+		D5A6FA671FF4B7C700448BE6 /* piano-d.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5A6FA601FF4B7C500448BE6 /* piano-d.wav */; };
+		D5A6FA681FF4B7C700448BE6 /* piano-g.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5A6FA611FF4B7C600448BE6 /* piano-g.wav */; };
+		D5A6FA691FF4B7C700448BE6 /* piano-e.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5A6FA621FF4B7C600448BE6 /* piano-e.wav */; };
+		D5A6FA6A1FF4B7C700448BE6 /* piano-f.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5A6FA631FF4B7C600448BE6 /* piano-f.wav */; };
+		D5A6FA6B1FF4B7C700448BE6 /* piano-a.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5A6FA641FF4B7C600448BE6 /* piano-a.wav */; };
+		D5A6FA6C1FF4B7C700448BE6 /* piano-c.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5A6FA651FF4B7C600448BE6 /* piano-c.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -306,6 +314,13 @@
 			remoteGlobalIDString = 5DBEB1501B18CEA900B34395;
 			remoteInfo = RNVectorIcons;
 		};
+		D58418D81FF4757200BA9AE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F2E0AAE51285481FB8CDBC1A /* RNSound.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 19825A1E1BD4A89800EE0337;
+			remoteInfo = RNSound;
+		};
 		D5D788BC1FE4DB8900ABA5F2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
@@ -376,6 +391,7 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		21275117C9774E3AA95B2187 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		22910AE20BB9464880FCAD2A /* RNSVG.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSVG.xcodeproj; path = "../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; };
+		2B6709E8CBCF4B5CB0D6FDA5 /* libRNSound.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSound.a; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* TonalTangents-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TonalTangents-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* TonalTangents-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TonalTangents-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F74B1F198E742108D1394D8 /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDeviceInfo.a; sourceTree = "<group>"; };
@@ -391,9 +407,17 @@
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		AFCCD3AAEF444DA2BA2C019B /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		C302A54C074245D599CF38B3 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		D5A6FA5F1FF4B7C500448BE6 /* piano-b.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "piano-b.wav"; path = "../App/Sounds/piano-b.wav"; sourceTree = "<group>"; };
+		D5A6FA601FF4B7C500448BE6 /* piano-d.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "piano-d.wav"; path = "../App/Sounds/piano-d.wav"; sourceTree = "<group>"; };
+		D5A6FA611FF4B7C600448BE6 /* piano-g.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "piano-g.wav"; path = "../App/Sounds/piano-g.wav"; sourceTree = "<group>"; };
+		D5A6FA621FF4B7C600448BE6 /* piano-e.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "piano-e.wav"; path = "../App/Sounds/piano-e.wav"; sourceTree = "<group>"; };
+		D5A6FA631FF4B7C600448BE6 /* piano-f.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "piano-f.wav"; path = "../App/Sounds/piano-f.wav"; sourceTree = "<group>"; };
+		D5A6FA641FF4B7C600448BE6 /* piano-a.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "piano-a.wav"; path = "../App/Sounds/piano-a.wav"; sourceTree = "<group>"; };
+		D5A6FA651FF4B7C600448BE6 /* piano-c.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "piano-c.wav"; path = "../App/Sounds/piano-c.wav"; sourceTree = "<group>"; };
 		EA16922607704087901CFE8E /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		ECE1ACA05891452A9A0E9DE3 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		EECC38564FC040F18025D137 /* libRNSVG-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNSVG-tvOS.a"; sourceTree = "<group>"; };
+		F2E0AAE51285481FB8CDBC1A /* RNSound.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
 		F41CF23E6CAD4319A626184E /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -427,6 +451,7 @@
 				5C00B281B3B64575A1B40086 /* libRNVectorIcons.a in Frameworks */,
 				7C7352E9F16441E48804A6AD /* libReactNativeConfig.a in Frameworks */,
 				3144FDD552794B0AB90C16C3 /* libRNSVG.a in Frameworks */,
+				8EDC0238133E4682B7F5D1B6 /* libRNSound.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,6 +631,7 @@
 				9A45D158C3BB422B86ADD0B9 /* RNVectorIcons.xcodeproj */,
 				3DBD33EB8F3A468399D4E294 /* ReactNativeConfig.xcodeproj */,
 				22910AE20BB9464880FCAD2A /* RNSVG.xcodeproj */,
+				F2E0AAE51285481FB8CDBC1A /* RNSound.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -622,6 +648,13 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				D5A6FA641FF4B7C600448BE6 /* piano-a.wav */,
+				D5A6FA5F1FF4B7C500448BE6 /* piano-b.wav */,
+				D5A6FA651FF4B7C600448BE6 /* piano-c.wav */,
+				D5A6FA601FF4B7C500448BE6 /* piano-d.wav */,
+				D5A6FA621FF4B7C600448BE6 /* piano-e.wav */,
+				D5A6FA631FF4B7C600448BE6 /* piano-f.wav */,
+				D5A6FA611FF4B7C600448BE6 /* piano-g.wav */,
 				13B07FAE1A68108700A75B9A /* TonalTangents */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* TonalTangentsTests */,
@@ -679,6 +712,7 @@
 				A7CB5F34CF034C46A2224CE4 /* libReactNativeConfig.a */,
 				A52C1D8B723C439CA783DFD6 /* libRNSVG.a */,
 				EECC38564FC040F18025D137 /* libRNSVG-tvOS.a */,
+				2B6709E8CBCF4B5CB0D6FDA5 /* libRNSound.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -712,6 +746,14 @@
 			children = (
 				D502229E1FDBBA8900563D4E /* libRNSVG.a */,
 				D50222A01FDBBA8900563D4E /* libRNSVG-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D58418D51FF4757200BA9AE5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D58418D91FF4757200BA9AE5 /* libRNSound.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -887,6 +929,10 @@
 				{
 					ProductGroup = D502228D1FDBBA8800563D4E /* Products */;
 					ProjectRef = 0038B899ECA9481AAFB0B6A5 /* RNDeviceInfo.xcodeproj */;
+				},
+				{
+					ProductGroup = D58418D51FF4757200BA9AE5 /* Products */;
+					ProjectRef = F2E0AAE51285481FB8CDBC1A /* RNSound.xcodeproj */;
 				},
 				{
 					ProductGroup = D50222931FDBBA8800563D4E /* Products */;
@@ -1146,6 +1192,13 @@
 			remoteRef = D50222A21FDBBA8900563D4E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		D58418D91FF4757200BA9AE5 /* libRNSound.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNSound.a;
+			remoteRef = D58418D81FF4757200BA9AE5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		D5D788BD1FE4DB8900ABA5F2 /* libthird-party.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1202,15 +1255,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5A6FA691FF4B7C700448BE6 /* piano-e.wav in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				D5A6FA671FF4B7C700448BE6 /* piano-d.wav in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				3DED057F1DA947D3BEB6E5E0 /* Entypo.ttf in Resources */,
 				2FCF2D8AAA95494392739CBE /* EvilIcons.ttf in Resources */,
+				D5A6FA6B1FF4B7C700448BE6 /* piano-a.wav in Resources */,
 				269F94CDD19647F9BB24822B /* FontAwesome.ttf in Resources */,
+				D5A6FA6C1FF4B7C700448BE6 /* piano-c.wav in Resources */,
+				D5A6FA681FF4B7C700448BE6 /* piano-g.wav in Resources */,
 				D3EA774C623C44C99FFCBACD /* Foundation.ttf in Resources */,
 				36ABAA76575A4305BB1F4F74 /* Ionicons.ttf in Resources */,
 				CC840E21B4F047FABA188584 /* MaterialCommunityIcons.ttf in Resources */,
+				D5A6FA661FF4B7C700448BE6 /* piano-b.wav in Resources */,
 				1255570F7FF74F56B1C50A93 /* MaterialIcons.ttf in Resources */,
+				D5A6FA6A1FF4B7C700448BE6 /* piano-f.wav in Resources */,
 				BED173543CF44F5DA631387D /* Octicons.ttf in Resources */,
 				86D8011C7CF047EE9C69DA86 /* SimpleLineIcons.ttf in Resources */,
 				5F2D3D6E2FD9436194C2FD0C /* Zocial.ttf in Resources */,
@@ -1343,12 +1403,14 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 				);
 				INFOPLIST_FILE = TonalTangentsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1376,12 +1438,14 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 				);
 				INFOPLIST_FILE = TonalTangentsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1412,6 +1476,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 				);
 				INFOPLIST_FILE = TonalTangents/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1440,6 +1505,7 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 				);
 				INFOPLIST_FILE = TonalTangents/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1472,11 +1538,13 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 				);
 				INFOPLIST_FILE = "TonalTangents-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1513,11 +1581,13 @@
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
 					"$(SRCROOT)/../node_modules/react-native-svg/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 				);
 				INFOPLIST_FILE = "TonalTangents-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1556,6 +1626,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.TonalTangents-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1580,6 +1651,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
