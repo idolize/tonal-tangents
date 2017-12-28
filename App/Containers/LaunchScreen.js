@@ -3,7 +3,7 @@ import { ScrollView, Text, Image, View, StyleSheet } from 'react-native';
 import RoundedButton from '../Components/RoundedButton';
 
 import { Images } from '../Themes'
-import CircleWithPoints from '../Components/CircleWithPoints';
+import ChordsCricle from '../Components/ChordsCricle';
 import {
   DIATONIC_CHORDS,
   NUM_CHORDS,
@@ -82,10 +82,10 @@ export default class LaunchScreen extends Component {
     const { activeChordIndex, scrollEnabled } = this.state;
     return (
       <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
+        <Image source={Images.background} style={styles.backgroundImage} resizeMode="stretch" />
         <ScrollView style={styles.container} scrollEnabled={scrollEnabled}>
           <View style={styles.centered}>
-            <CircleWithPoints
+            <ChordsCricle
               activeChordIndex={activeChordIndex}
               onDrag={this.handleCircleDrag}
               onDragStartAndEnd={this.handleIsCircleDragging}

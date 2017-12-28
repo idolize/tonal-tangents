@@ -15,7 +15,7 @@ ExamplesRegistry.addComponentExample('Full Button', () =>
     text='Hey there'
     onPress={() => window.alert('Full Button Pressed!')}
   />
-)
+);
 
 export default class FullButton extends Component {
   static propTypes = {
@@ -24,11 +24,12 @@ export default class FullButton extends Component {
     styles: PropTypes.object
   }
 
-  render () {
+  render() {
+    const { text, onPress } = this.props;
     return (
-      <TouchableOpacity style={[styles.button, this.props.styles]} onPress={this.props.onPress}>
-        <Text style={styles.buttonText}>{this.props.text && this.props.text.toUpperCase()}</Text>
+      <TouchableOpacity style={[styles.button, this.props.styles]} onPress={onPress}>
+        <Text style={styles.buttonText}>{text && text.toUpperCase()}</Text>
       </TouchableOpacity>
-    )
+    );
   }
 }

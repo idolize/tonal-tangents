@@ -10,7 +10,7 @@ import { isEqual, flatten } from 'lodash';
 import { listen, removeListeners } from './animatedListener';
 
 const animationConfig = {
-  duration: 100,
+  duration: 100, // TODO make this configurable via prop
   easing: Easing.ease,
 };
 

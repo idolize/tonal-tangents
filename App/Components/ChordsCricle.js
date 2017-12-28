@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import { noop, throttle } from 'lodash';
@@ -12,17 +13,35 @@ import {
 import shapeToColor from '../Constants/shapeToColor';
 import { alwaysReturnTrue, alwaysReturnFalse } from '../Utils/alwaysReturn';
 
-export default class CircleWithPoints extends PureComponent {
+export default class ChordsCricle extends PureComponent {
+  static propTypes = {
+    activeChordIndex: PropTypes.number,
+    size: PropTypes.number,
+    strokeWidth: PropTypes.number,
+    strokeColor: PropTypes.string,
+    circleFillColor: PropTypes.string,
+    dragCircleFillColor: PropTypes.string,
+    circleOpacity: PropTypes.number,
+    polygonOpacity: PropTypes.number,
+    pointsColor: PropTypes.string,
+    onDrag: PropTypes.func,
+    onDragStartAndEnd: PropTypes.func,
+    enableDrag: PropTypes.bool,
+  }
+
   static defaultProps = {
     activeChordIndex: 0,
     size: 300,
     strokeWidth: 10,
     strokeColor: 'black',
-    fillColor: 'black',
-    fillOpacity: 0.2,
+    circleFillColor: 'black',
+    dragCircleFillColor: 'darkred',
+    circleOpacity: 0.2,
+    polygonOpacity: 0.2,
     pointsColor: 'white',
     onDrag: noop,
     onDragStartAndEnd: noop,
+    enableDrag: true,
   }
 
   constructor(props) {
@@ -35,6 +54,9 @@ export default class CircleWithPoints extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps, oldProps) {
+    if (oldProps.enableDrag && !nextProps.enableDrag) {
+      this.setState({ isDragging: false, lastDragPos: null });
+    }
     if (nextProps.size !== oldProps.size || nextProps.strokeWidth !== oldProps.strokeWidth) {
       this.computePointsOnCircle(nextProps);
     }
@@ -126,7 +148,7 @@ export default class CircleWithPoints extends PureComponent {
   }
 
   renderLinesBetweenPoints() {
-    const { activeChordIndex, pointsColor, strokeWidth } = this.props;
+    const { activeChordIndex, pointsColor, strokeWidth, polygonOpacity } = this.props;
     // There are 4 lines to visualize this chord
     const chord = DIATONIC_CHORDS[activeChordIndex];
     const { label, notes } = chord;
@@ -144,7 +166,7 @@ export default class CircleWithPoints extends PureComponent {
       <AnimatedPolygon
         points={polygonPoints}
         fill={shapeToColor[chord.shapeType]}
-        fillOpacity={0.2}
+        fillOpacity={polygonOpacity}
         stroke={pointsColor}
         strokeWidth={strokeWidth / 2}
       />
@@ -157,23 +179,26 @@ export default class CircleWithPoints extends PureComponent {
       strokeSize,
       strokeColor,
       strokeWidth,
-      fillColor,
-      fillOpacity,
+      circleFillColor,
+      dragCircleFillColor,
+      circleOpacity,
       pointsColor,
+      enableDrag,
     } = this.props;
     const halfSize = (size / 2);
     const { isDragging } = this.state;
+    const dragProps = {
+      onStartShouldSetResponder: alwaysReturnTrue,
+      onStartShouldSetResponderCapture: alwaysReturnTrue,
+      onMoveShouldSetResponder: alwaysReturnTrue,
+      onResponderTerminationRequest: alwaysReturnFalse,
+      onResponderGrant: this.handleRespondingToTouch,
+      onResponderMove: this.handleDrag,
+      onResponderRelease: this.handleNotRespondingToTouch,
+      onResponderTerminate: this.handleNotRespondingToTouch,
+    };
     return (
-      <View
-        onStartShouldSetResponder={alwaysReturnTrue}
-        onStartShouldSetResponderCapture={alwaysReturnTrue}
-        onMoveShouldSetResponder={alwaysReturnTrue}
-        onResponderTerminationRequest={alwaysReturnFalse}
-        onResponderGrant={this.handleRespondingToTouch}
-        onResponderMove={this.handleDrag}
-        onResponderRelease={this.handleNotRespondingToTouch}
-        onResponderTerminate={this.handleNotRespondingToTouch}
-      >
+      <View {...(enableDrag ? dragProps : null)}>
         <Svg
           height={size}
           width={size}
@@ -184,8 +209,8 @@ export default class CircleWithPoints extends PureComponent {
             r={(halfSize - strokeWidth)}
             stroke={strokeColor}
             strokeWidth={strokeWidth}
-            fill={isDragging ? 'darkred' : fillColor}
-            fillOpacity={fillOpacity}
+            fill={isDragging ? dragCircleFillColor : circleFillColor}
+            fillOpacity={circleOpacity}
           />
           {this.points.map((point, i) => (
             <Circle

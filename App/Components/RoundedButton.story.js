@@ -1,7 +1,7 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react-native'
+import React from 'react';
+import { storiesOf } from '@storybook/react-native';
 
-import RoundedButton from './RoundedButton'
+import RoundedButton from './RoundedButton';
 
 storiesOf('RoundedButton')
   .add('Default', () => (
@@ -13,4 +13,4 @@ storiesOf('RoundedButton')
     <RoundedButton>
         Hello from the children!
     </RoundedButton>
-  ))
+  ));
